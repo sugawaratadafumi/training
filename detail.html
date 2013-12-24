@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+<meta name="viewport" content="width=device-width; initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="auther" content="">
+	<link href="css/detail.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src='http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js'></script>
+	<script type="text/javascript" src="js/highcharts/highcharts.js"></script>
+	<script type="text/javascript" src="js/highcharts/highcharts-more.js"></script>
+	<script type="text/javascript" src="js/highcharts/modules/exporting.js"></script>
+</head>
+<body>
+
+<div id="header">
+	<div id="h_wrap">
+		<img id="logo" src="img/logo.png" alt="logo">
+		<div id="search">
+			<div id="c_search">
+				<select name="category_search">
+					<option value="" selected="">カテゴリーで探す</option>
+					<option value="">test</option>
+					<option value="">test</option>
+				</select>
+			</div>
+			<div id="k_search">
+				<form method="get" action="#">
+					<div>
+						<input type="text" name="example" class="key"><input type="submit" value="検索" class="s_btn">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div><!-- /#header -->
+
+<div id="wrapper">
+
+	<div id="breadcrumb">
+		<ol>
+			<li><a href="">HOME</a></li>
+			<li><a href="">デジタルカメラ</a></li>
+			<li>Olympus OM-D E-M5</li>
+		</ol>
+	</div><!-- /#breadcrumb -->
+
+	<div id="product">
+		<h1>OLYMPUS OM-D E-M5 レンズキット [ブラック]</h1>
+		<div id="p_pic">
+			<img src="img/pic_1.jpg" alt="pic_1">
+		</div>
+
+		<div id="score">
+			<h3>バリュースコア</h3>
+			<p class="sp_w_vs"><a href="">バリュースコアとは？</a></p>
+			<div id="graph_vs" class="vs_4">
+				<p class="vs">92</p>
+			</div>
+			<p class="w_vs"><a href="">バリュースコアとは？</a></p>
+		</div>
+
+		<div id="shopping_info">
+			<div id="shopping_info_h">
+				<h2>ネットショッピング情報</h2>
+			</div>
+	
+			<table id="shopping_table">
+				<tr>
+				<th>新品最安値</th>
+				<td>
+				¥77,268
+				</td>
+				</tr>
+				<tr>
+				<th class="amazon">Amazon最安値</th>
+				<td class="other">
+				¥77,268
+				</td>
+				</tr>
+				<tr>
+				<th class="rakuten">楽天市場最安値</th>
+				<td class="other">
+				¥77,268
+				</td>
+				</tr>
+				<tr class="b_none">
+				<th class="yahoo">Yahoo!ショッピング最安値</th>
+				<td class="other">
+				¥77,268
+				</td>
+				</tr>
+			</table>	
+		</div>
+
+		<div id="auction_info">
+			<div id="auction_info_h">
+				<h2>オークション情報</h2>
+			</div>
+			<table id="auction_table">
+				<tr class="b_none">
+				<th>平均落札相場</th>
+				<td>¥71,789</td>
+				</tr>
+			</table>
+		</div>
+	</div><!-- /#product -->
+
+	<div id="predict">
+		<div id="predict_h">
+			<h2>落札予測<span class="h_small">予算を入力して落札できる確率を予想できます</span></h2>
+		</div>
+		<p id="sp_predict_txt1">予算を入力して落札できる確立を予想できます</p>
+		<div id="p_graph">
+			<textarea id="p_price">65000</textarea><p class="price_txt">円以下で落札できる可能性は･･･</p>
+			<div id="p_graph_img">
+				<p>54%</p>
+			</div>
+		</div>
+	</div>
+	
+	<div id="transition">
+		<div id="transition_h">
+			<h2>落札価格推移</h2>
+		</div>
+	
+		<div id='container'></div>
+			<script type="text/javascript">
+				$(function () {
+				
+					var ranges = [
+							[1246406400000, 14.3, 27.7],
+							[1246492800000, 14.5, 27.8],
+							[1246579200000, 15.5, 29.6],
+							[1246665600000, 16.7, 30.7],
+							[1246752000000, 16.5, 25.0],
+							[1246838400000, 17.8, 25.7],
+							[1246924800000, 13.5, 24.8],
+							[1247011200000, 10.5, 21.4],
+							[1247097600000, 9.2, 23.8],
+							[1247184000000, 11.6, 21.8],
+							[1247270400000, 10.7, 23.7],
+							[1247356800000, 11.0, 23.3],
+							[1247443200000, 11.6, 23.7],
+							[1247529600000, 11.8, 20.7],
+							[1247616000000, 12.6, 22.4],
+							[1247702400000, 13.6, 19.6],
+							[1247788800000, 11.4, 22.6],
+							[1247875200000, 13.2, 25.0],
+							[1247961600000, 14.2, 21.6],
+							[1248048000000, 13.1, 17.1],
+							[1248134400000, 12.2, 15.5],
+							[1248220800000, 12.0, 20.8],
+							[1248307200000, 12.0, 17.1],
+							[1248393600000, 12.7, 18.3],
+							[1248480000000, 12.4, 19.4],
+							[1248566400000, 12.6, 19.9],
+							[1248652800000, 11.9, 20.2],
+							[1248739200000, 11.0, 19.3],
+							[1248825600000, 10.8, 17.8],
+							[1248912000000, 11.8, 18.5],
+							[1248998400000, 10.8, 16.1]
+						],
+						averages = [
+							[1246406400000, 21.5],
+							[1246492800000, 22.1],
+							[1246579200000, 23],
+							[1246665600000, 23.8],
+							[1246752000000, 21.4],
+							[1246838400000, 21.3],
+							[1246924800000, 18.3],
+							[1247011200000, 15.4],
+							[1247097600000, 16.4],
+							[1247184000000, 17.7],
+							[1247270400000, 17.5],
+							[1247356800000, 17.6],
+							[1247443200000, 17.7],
+							[1247529600000, 16.8],
+							[1247616000000, 17.7],
+							[1247702400000, 16.3],
+							[1247788800000, 17.8],
+							[1247875200000, 18.1],
+							[1247961600000, 17.2],
+							[1248048000000, 14.4],
+							[1248134400000, 13.7],
+							[1248220800000, 15.7],
+							[1248307200000, 14.6],
+							[1248393600000, 15.3],
+							[1248480000000, 15.3],
+							[1248566400000, 15.8],
+							[1248652800000, 15.2],
+							[1248739200000, 14.8],
+							[1248825600000, 14.4],
+							[1248912000000, 15],
+							[1248998400000, 13.6]
+						];
+				
+				    
+				    	$('#container').highcharts({
+				    	
+						    title: {
+						        text: '落札価格推移'
+						    },
+						
+						    xAxis: {
+						        type: 'datetime'
+						    },
+						    
+						    yAxis: {
+						        title: {
+						            text: null
+						        }
+						    },
+						
+						    tooltip: {
+						        crosshairs: true,
+						        shared: true,
+						        valueSuffix: '°C'
+						    },
+						    
+						    legend: {
+						    },
+						
+						    series: [{
+						    	name: 'Temperature',
+						    	data: averages,
+						    	zIndex: 1,
+						    	marker: {
+						    		fillColor: 'white',
+						    		lineWidth: 2,
+						    		lineColor: Highcharts.getOptions().colors[0]
+						    	}
+						    }, {
+						        name: 'Range',
+						        data: ranges,
+						        type: 'arearange',
+						        lineWidth: 0,
+						    	linkedTo: ':previous',
+						    	color: Highcharts.getOptions().colors[0],
+						    	fillOpacity: 0.3,
+						    	zIndex: 0
+						    }]
+						
+						});
+				    
+				});
+				</script>
+	</div>
+
+	<div id="auction">
+		<div id="auction_h">
+			<h2>開催中のオークション</h2>
+		</div>
+		<p class="auction_txt1"><span class="bold">35件</span> のオークションが開催中です。</p>
+	
+		<div class="a_box">
+			<div class="p_img">
+				<img src="img/pic_1.jpg" alt="sample_pic">
+			</div>
+			<div class="a_txt_box">
+				<h3>【新品】 OLYMPUS OM-D E-M5 ダブルズームキット ブラック</h3>
+				<p>現在価格 : <span class="bold">¥ 30,500</span></p>
+				<p>終了日時 ： 11月 27日 22時 45分　（ 残り時間 : 2日＋5:42:20 ）</p>
+				<p>入札件数 ： 7件</p>
+			</div>
+		</div>
+	
+		<div class="a_box">
+			<div class="p_img">
+				<img src="img/pic_1.jpg" alt="sample_pic">
+			</div>
+			<div class="a_txt_box">
+				<h3>【新品】 OLYMPUS OM-D E-M5 ダブルズームキット ブラック</h3>
+				<p>現在価格 : <span class="bold">¥ 30,500</span></p>
+				<p>終了日時 ： 11月 27日 22時 45分　（ 残り時間 : 2日＋5:42:20 ）</p>
+				<p>入札件数 ： 7件</p>
+			</div>
+		</div>
+	
+		<div class="a_box">
+			<div class="p_img">
+				<img src="img/pic_1.jpg" alt="sample_pic">
+			</div>
+			<div class="a_txt_box">
+				<h3>【新品】 OLYMPUS OM-D E-M5 ダブルズームキット ブラック</h3>
+				<p>現在価格 : <span class="bold">¥ 30,500</span></p>
+				<p>終了日時 ： 11月 27日 22時 45分　（ 残り時間 : 2日＋5:42:20 ）</p>
+				<p>入札件数 ： 7件</p>
+			</div>
+		</div>
+	
+		<div class="a_box">
+			<div class="p_img">
+				<img src="img/pic_1.jpg" alt="sample_pic">
+			</div>
+			<div class="a_txt_box">
+				<h3>【新品】 OLYMPUS OM-D E-M5 ダブルズームキット ブラック</h3>
+				<p>現在価格 : <span class="bold">¥ 30,500</span></p>
+				<p>終了日時 ： 11月 27日 22時 45分　（ 残り時間 : 2日＋5:42:20 ）</p>
+				<p>入札件数 ： 7件</p>
+			</div>
+		</div>
+	</div><!-- /#auction -->
+
+
+	<div id="similar">
+		<div id="similar_h">
+			<h2>類似の商品</h2>
+		</div>
+		<p class="auction_txt1">検索した商品の類似商品です。</p>
+	
+		<div class="a_box">
+			<div class="p_img">
+				<img src="img/pic_1.jpg" alt="sample_pic">
+			</div>
+			<div class="a_txt_box">
+				<h3>【新品】 OLYMPUS OM-D E-M5 ダブルズームキット ブラック</h3>
+				<p>現在価格 : <span class="bold">¥ 30,500</span></p>
+				<p>終了日時 ： 11月 27日 22時 45分　（ 残り時間 : 2日＋5:42:20 ）</p>
+				<p>入札件数 ： 7件</p>
+			</div>
+		</div>
+	
+		<div class="a_box">
+			<div class="p_img">
+				<img src="img/pic_1.jpg" alt="sample_pic">
+			</div>
+			<div class="a_txt_box">
+				<h3>【新品】 OLYMPUS OM-D E-M5 ダブルズームキット ブラック</h3>
+				<p>現在価格 : <span class="bold">¥ 30,500</span></p>
+				<p>終了日時 ： 11月 27日 22時 45分　（ 残り時間 : 2日＋5:42:20 ）</p>
+				<p>入札件数 ： 7件</p>
+			</div>
+		</div>
+		
+		<div class="a_box">
+			<div class="p_img">
+				<img src="img/pic_1.jpg" alt="sample_pic">
+			</div>
+			<div class="a_txt_box">
+				<h3>【新品】 OLYMPUS OM-D E-M5 ダブルズームキット ブラック</h3>
+				<p>現在価格 : <span class="bold">¥ 30,500</span></p>
+				<p>終了日時 ： 11月 27日 22時 45分　（ 残り時間 : 2日＋5:42:20 ）</p>
+				<p>入札件数 ： 7件</p>
+			</div>
+		</div>
+		
+		<div class="a_box">
+			<div class="p_img">
+				<img src="img/pic_1.jpg" alt="sample_pic">
+			</div>
+			<div class="a_txt_box">
+				<h3>【新品】 OLYMPUS OM-D E-M5 ダブルズームキット ブラック</h3>
+				<p>現在価格 : <span class="bold">¥ 30,500</span></p>
+				<p>終了日時 ： 11月 27日 22時 45分　（ 残り時間 : 2日＋5:42:20 ）</p>
+				<p>入札件数 ： 7件</p>
+			</div>
+		</div>
+	</div><!-- /#auction -->
+
+	<div id="f_breadcrumb">
+		<ol>
+			<li><a href="">HOME</a></li>
+			<li><a href="">デジタルカメラ</a></li>
+			<li>Olympus OM-D E-M5</li>
+		</ol>
+	</div><!-- /#breadcrumb -->
+
+	<div id="facebook">
+		<img src="img/fb_like_box.png" alt="fb_like_box">
+	</div>
+
+	<div id="sp_f_nav">
+		<div id="sfn_wrap">
+			<ul>
+				<li id="back_search"><a href="">検索結果に戻る</a></li>
+				<li id="to_top"><a href="">ページの先頭へ</a></li>
+			</ul>
+		</div>
+	</div>
+
+</div><!-- /#wrapper -->
+
+<div id="footer">
+	<div id="f_wrapper">
+		<div id="f_nav1">
+	<ul>
+		“モノの価値を知る” Services for buyers Presented by Aucfan  : 
+		<li><a href="">Aucfan</a></li>
+		<li><a href="">AucfanPro</a></li>
+		<li><a href="">AucfanMobile</a></li>
+		<li><a href="">AucfanTouch</a></li>
+		<li><a href="">GlobalAucfan</a></li>
+		<li><a href="">AucfanTown</a></li>
+	</ul>
+	</div>
+	
+	<div id="f_nav2">
+	<ul>
+		<li><a href="">お問い合わせ</a></li>
+		<li><a href="">会社概要</a></li>
+		<li><a href="">特定商取引表示</a></li>
+		<li><a href="">スタッフ募集</a></li>
+		<li><a href="">広告掲載について</a></li>
+		<li><a href="">メディア実績</a></li>
+		<li><a href="">利用規約</a></li>
+	</ul>
+	</div>	
+	<small>Copyright © 2013 aucfan Co., Ltd. All Rights Reserved.</small>
+	</div><!-- /#f_wrapper -->
+</div><!-- /#footer -->
+
+
+
+</body>
+</html>
